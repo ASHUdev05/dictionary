@@ -1,42 +1,45 @@
 #include <iostream>  
-using namespace std; 
-class Dictionary
-{
-public:
-    static int const row = 2;
-    string test [row][3]=  
-    {  
-        {"ambigue","abduce","aberrated"},  
-        {"An ambiguous statement or expression.","To draw or take away.","Characterized by defects, abnormality, or deviation from the usual, typical, or expected course."} 
-    };
+#include <string>
+
+using std::string;
+using std::cout;
+using std::cin;
+
+#define TEST_SIZE 2
+
+static const string test[TEST_SIZE][3] = {  
+    {"ambigue","abduce","aberrated"},  
+    {"An ambiguous statement or expression.","To draw or take away.","Characterized by defects, abnormality, or deviation from the usual, typical, or expected course."} 
 };
 
-int calc(string a)
-{
-    Dictionary dic;
-        for(int i=0;i<3;i++)
+ssize_t calc(string a) {
+    for (ssize_t i = 0; i <= TEST_SIZE; i++)
+    {
+        if (a == test[0][i])
         {
-            if(a==dic.test[0][i])
-            {
-                return i;
-            }
+            return i;
         }
-        return -1;
-};
+    }
+    
+    return -1;
+}
 
 int main()  
 {  
-string inp = "";
-Dictionary dic;
-    cout<<"Enter word:"<<endl;
-    cin>>inp;
-    if(calc(inp)<0)
+    string inp = "";
+
+    cout << "Enter word:\n";
+    cin >> inp;
+    
+    const ssize_t calculated = calc(inp);
+    
+    if (calculated < 0)
     {
-        cout<<"Not found"<<endl;
+        cout << "Not found\n";
     }
     else
     {
-        cout<<dic.test[1][calc(inp)]<<endl;
+        cout << test[1][calculated] << '\n';
     }
     return 0;
-};
+}
